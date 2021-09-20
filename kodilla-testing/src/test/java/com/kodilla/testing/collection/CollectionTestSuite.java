@@ -9,6 +9,16 @@ import java.util.List;
 
 public class CollectionTestSuite {
 
+    @BeforeAll
+    public static void beforeAll() {
+        System.out.println("Collection Test Suite: begin \n");
+    }
+
+    @AfterAll
+    public static void afterAll() {
+        System.out.println("Collection Test Suite: end \n-------------");
+    }
+
     @BeforeEach
     public void before() {
         System.out.println("Collection Test Case: begin");

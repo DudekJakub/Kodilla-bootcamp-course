@@ -7,22 +7,22 @@ import org.junit.jupiter.api.*;
 public class ForumTestSuite {
     @BeforeEach
     public void before() {
-        System.out.println("Test Case: begin");
+        System.out.println("Forum Test Case: begin");
     }
 
     @AfterEach
     public void after() {
-        System.out.println("Test Case: end \n");
+        System.out.println("Forum Test Case: end \n");
     }
 
     @BeforeAll
     public static void beforeAll() {
-        System.out.println("Test Suite: begin \n");
+        System.out.println("Forum Test Suite: begin \n");
     }
 
     @AfterAll
     public static void afterAll() {
-        System.out.println("\nTest Suite: end");
+        System.out.println("Forum Test Suite: end \n-------------");
     }
 
 

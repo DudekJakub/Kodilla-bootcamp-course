@@ -25,7 +25,7 @@ public class TestingMain {
         if (resultAdd == 4) {
             System.out.println("Dodawanie wykonano poprawnie: " + resultAdd);
         } else {
-            System.out.println("ERROR: Wynik jest inny od zakładanego, tj. 4");
+            System.out.println("ERROR: Wynik jest inny od zakładanego (tj. 4)");
         }
 
         if (resultSubstract == 0) {

@@ -1,37 +1,29 @@
 package com.kodilla.testing;
 
+import com.kodilla.testing.collection.OddNumbersExterminator;
 import com.kodilla.testing.user.SimpleUser;
 import com.kodilla.testing.calculator.Calculator;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 public class TestingMain {
     public static void main(String[] args) {
-        SimpleUser simpleUser = new SimpleUser("theForumUser");
 
-        String result = simpleUser.getUsername();
+        OddNumbersExterminator oddNumbersExterminator = new OddNumbersExterminator();
 
-        if (result.equals("theForumUser")) {
-            System.out.println("test OK");
-        } else {
-            System.out.println("Error!");
-        }
+        ArrayList <Integer> lista = new ArrayList<>();
+        lista.add(1);
+        lista.add(2);
+        lista.add(3);
+        lista.add(4);
+        lista.add(5);
+        lista.add(6);
+        lista.add(7);
+        lista.add(8);
 
-        System.out.println("Test - pierwszy test jednostkowy:");
+        System.out.println(oddNumbersExterminator.exterminate(lista));
 
-        Calculator calculator = new Calculator();
 
-        int resultAdd = calculator.add(2, 2);
-        int resultSubstract = calculator.subtract(2, 2);
-
-        if (resultAdd == 4) {
-            System.out.println("Dodawanie wykonano poprawnie: " + resultAdd);
-        } else {
-            System.out.println("ERROR: Wynik jest inny od zakładanego (tj. 4)");
-        }
-
-        if (resultSubstract == 0) {
-            System.out.println("Odejmowanie wykonano poprawnie: " + resultSubstract);
-        } else {
-            System.out.println("ERROR: Wynik jest inny od zakładanego (tj. 0)");
-        }
     }
 }

@@ -1,13 +1,17 @@
 package com.kodilla.testing;
 
 import com.kodilla.testing.collection.OddNumbersExterminator;
-import com.kodilla.testing.user.SimpleUser;
-import com.kodilla.testing.calculator.Calculator;
+import com.kodilla.testing.shape.ShapeCollector;
+import com.kodilla.testing.shape.Shape;
+import com.kodilla.testing.shape.Triangle;
+import com.kodilla.testing.shape.square;
+import com.kodilla.testing.shape.Circle;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Collection;
 
 public class TestingMain {
+
     public static void main(String[] args) {
 
         OddNumbersExterminator oddNumbersExterminator = new OddNumbersExterminator();
@@ -23,7 +27,6 @@ public class TestingMain {
         lista.add(8);
 
         System.out.println(oddNumbersExterminator.exterminate(lista));
-
 
     }
 }

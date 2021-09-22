@@ -16,7 +16,7 @@ public class CollectionTestSuite {
 
     @AfterAll
     public static void afterAll() {
-        System.out.println("Collection Test Suite: end \n-------------");
+        System.out.println("Collection  Test Suite: end \n-------------");
     }
 
     @BeforeEach

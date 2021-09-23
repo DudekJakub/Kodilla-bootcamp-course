@@ -12,9 +12,8 @@ public class ShapeCollector {
 
     @Override
     public String toString() {
-        return "ShapeCollector{" +
-                "shapeList=" + shapeList +
-                '}';
+        return "ShapeCollector:" +
+                "shapeList=" + shapeList;
     }
 
     public ArrayList<Shape> getShapeList() {

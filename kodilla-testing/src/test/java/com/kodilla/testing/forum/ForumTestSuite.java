@@ -5,6 +5,7 @@ import org.junit.jupiter.api.*;
 
 @DisplayName("Forum Test Suite")
 public class ForumTestSuite {
+
     @BeforeEach
     public void before() {
         System.out.println("Forum Test Case: begin");

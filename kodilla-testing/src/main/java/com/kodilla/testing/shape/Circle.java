@@ -2,7 +2,7 @@ package com.kodilla.testing.shape;
 
 public class Circle implements Shape {
 
-    String shapeName;
+    String shapeName = "Circle";
     double field;
 
     public Circle(double circleRadius){
@@ -16,5 +16,11 @@ public class Circle implements Shape {
 
     public double getField() {
         return field;
+    }
+
+    @Override
+    public String toString() {
+        return  "shapeName='" + shapeName + '\'' +
+                " - field=" + field;
     }
 }

@@ -3,6 +3,7 @@ package com.kodilla.testing;
 import com.kodilla.testing.collection.OddNumbersExterminator;
 import com.kodilla.testing.weather.stub.Temperatures;
 import com.kodilla.testing.weather.stub.WeatherForecast;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -41,5 +42,6 @@ public class TestingMain {
         WeatherForecast weatherForecast = new WeatherForecast(temperatures);
         System.out.println(weatherForecast.calculateAverageTemperature());
         System.out.println(weatherForecast.calculateMedianTemperature());
+
     }
 }

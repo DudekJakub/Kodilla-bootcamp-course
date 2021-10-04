@@ -5,7 +5,7 @@ import java.util.stream.IntStream;
 public interface ArrayOperations {
 
      static double getAverage(int[] numbers) {
-         System.out.println("Collection of 20 random numbers:");
+         System.out.println("Collection [Array] of 20 numbers:");
 
          IntStream.range(0, numbers.length)
                  .map(n -> numbers[n])

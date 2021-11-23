@@ -32,8 +32,8 @@ public class Order {
         return completed;
     }
 
-    public void setCompleted(boolean isCompleted) {
-        this.completed = completed;
+    public void setCompleted() {
+        completed = true;
     }
 
     @Override
@@ -49,5 +49,15 @@ public class Order {
     @Override
     public int hashCode() {
         return Objects.hash(getOrderNumber(), getProduct(), getBuyer(), isCompleted());
+    }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "orderNumber=" + orderNumber +
+                ", product=" + product +
+                ", buyer=" + buyer +
+                ", completed=" + completed +
+                '}';
     }
 }

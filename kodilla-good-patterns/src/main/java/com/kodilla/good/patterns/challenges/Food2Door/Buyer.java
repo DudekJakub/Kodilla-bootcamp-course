@@ -53,4 +53,15 @@ public class Buyer {
     public int hashCode() {
         return Objects.hash(getName(), getCity(), getStreet(), getPostCode(), getBuildingNumber());
     }
+
+    @Override
+    public String toString() {
+        return "Buyer{" +
+                "name='" + name + '\'' +
+                ", city='" + city + '\'' +
+                ", street='" + street + '\'' +
+                ", postCode='" + postCode + '\'' +
+                ", buildingNumber='" + buildingNumber + '\'' +
+                '}';
+    }
 }

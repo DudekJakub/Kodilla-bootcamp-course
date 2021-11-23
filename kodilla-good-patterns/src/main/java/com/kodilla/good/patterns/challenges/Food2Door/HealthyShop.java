@@ -17,6 +17,7 @@ public class HealthyShop implements FoodProducer {
     }
 
     public boolean process(Service service) {
-        return true; //tymczasowo
+        SendOrderService sendOrderService = new SendOrderService();
+        return sendOrderService.isSent(name, service, productList);
     }
 }

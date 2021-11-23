@@ -10,7 +10,7 @@ public class SendOrderService {
             for (Product product : productList) {
                 if (order.getProduct().equals(product)) {
                     System.out.println(name + " sent product " + product.getProductName() + " in the amount of " + product.getProductQuantity() + " to " + order.getBuyer());
-                    order.setCompleted(true);
+                    order.setCompleted();
                     sent = true;
                 }
             }

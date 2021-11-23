@@ -21,9 +21,9 @@ public class ExpeditionService implements Service {
 
     @Override
     public void setOrderCompleted(Order order) {
-        for (Order ordER : orderList) {
-            if (ordER.equals(order)) {
-                ordER.setCompleted(true);
+        for (Order ord : orderList) {
+            if (ord.equals(order)) {
+                ord.setCompleted();
             }
         }
     }
@@ -32,7 +32,23 @@ public class ExpeditionService implements Service {
         List<Order> orderList = new ArrayList<Order>();
         this.orderList.stream()
                 .filter(order -> !order.isCompleted())
-                .forEach(order -> orderList.add(order));
+                .forEach(orderList::add);
         return orderList;
+    }
+
+    public List<Order> getCompletedOrders() {
+        List<Order> orderList = new ArrayList<>();
+        this.orderList.stream()
+                .filter(order -> order.isCompleted())
+                .forEach(orderList::add);
+        return orderList;
+    }
+
+    @Override
+    public String toString() {
+        return "ExpeditionService{" +
+                "orderList=" + orderList +
+                ", orderNumber=" + orderNumber +
+                '}';
     }
 }

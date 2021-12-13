@@ -16,7 +16,6 @@ public class RpsRunner {
         boolean end1 = false;
         boolean end2 = false;
         boolean end3 = false;
-        boolean endIniFinish = true;
 
         int roundNumber = 0;
         int playerScore = 0;
@@ -26,7 +25,6 @@ public class RpsRunner {
 
         //pętla inicjująca
         while (!endIni) {
-
             System.out.println("--- NOWA GRA --- \nJak masz na imie?");
             String name = playerName.nextLine();
 
@@ -69,8 +67,8 @@ public class RpsRunner {
                             System.out.println("Dziękujemy za grę!");
                             roundNumber = roundNum;
                             System.exit(0);
-                        } else if (playAgain.equals("tak")) {
-                            endIni = endIniFinish;
+                        } else {
+                            initNextGame = 0;
                             break;
                         }
                     }

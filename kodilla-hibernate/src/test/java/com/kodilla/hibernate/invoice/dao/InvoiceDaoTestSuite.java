@@ -42,18 +42,23 @@ public class InvoiceDaoTestSuite {
         diablo2.getItem().add(item3);
         heroes3.getItem().add(item4);
 
+        item1.setProduct(xboxSeriesX);
+        item2.setProduct(playstation5);
+        item3.setProduct(diablo2);
+        item4.setProduct(heroes3);
+
         Invoice invoice1 = new Invoice("001");
         Invoice invoice2 = new Invoice("002");
-
-        item1.setInvoice(invoice1);
-        item2.setInvoice(invoice1);
-        item3.setInvoice(invoice2);
-        item4.setInvoice(invoice2);
 
         invoice1.getItems().add(item1);
         invoice1.getItems().add(item2);
         invoice2.getItems().add(item3);
         invoice2.getItems().add(item4);
+
+        item1.setInvoice(invoice1);
+        item2.setInvoice(invoice1);
+        item3.setInvoice(invoice2);
+        item4.setInvoice(invoice2);
 
         //When
         invoiceDao.save(invoice1);

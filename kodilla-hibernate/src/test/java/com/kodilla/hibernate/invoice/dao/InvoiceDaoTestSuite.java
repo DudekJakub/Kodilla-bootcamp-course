@@ -23,7 +23,6 @@ public class InvoiceDaoTestSuite {
     @Autowired
     private InvoiceDao invoiceDao;
 
-
     @Test
     void testInvoiceDaoSave() {
         //Given

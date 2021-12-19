@@ -74,7 +74,7 @@ public class Item {
         this.price = price;
     }
 
-    @Column(name = "ITEM VALUE")
+    @Column(name = "ITEM_VALUE")
     public BigDecimal getValue() {
         return value;
     }

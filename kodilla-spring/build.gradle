@@ -14,6 +14,12 @@ repositories {
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter'
+    implementation 'au.com.dius.pact.provider:spring:4.3.2'
+    implementation 'au.com.dius:pact-jvm-provider-spring_2.12:3.6.15'
+    implementation 'au.com.dius:pact-jvm-provider-spring_2.11:3.5.24'
+    implementation 'au.com.dius:pact-jvm-provider-spring:4.0.10'
+    implementation 'au.com.dius:pact-jvm-provider-junit5-spring:4.0.10'
+    implementation 'au.com.dius.pact.provider:junit5spring:4.3.2'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 

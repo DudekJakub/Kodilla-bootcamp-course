@@ -11,6 +11,12 @@ repositories {
 
 dependencies {
     implementation group: 'mysql', name: 'mysql-connector-java', version: '8.0.20'
+    implementation 'au.com.dius.pact.provider:spring:4.3.2'
+    implementation 'au.com.dius:pact-jvm-provider-spring_2.12:3.6.15'
+    implementation 'au.com.dius:pact-jvm-provider-spring_2.11:3.5.24'
+    implementation 'au.com.dius:pact-jvm-provider-spring:4.0.10'
+    implementation 'au.com.dius:pact-jvm-provider-junit5-spring:4.0.10'
+    implementation 'au.com.dius.pact.provider:junit5spring:4.3.2'
     testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.6.2'
     testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.6.2'
     testImplementation group: 'org.mockito', name: 'mockito-junit-jupiter', version: '3.3.3'

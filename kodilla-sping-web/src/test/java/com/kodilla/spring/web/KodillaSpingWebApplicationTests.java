@@ -10,4 +10,9 @@ class KodillaSpingWebApplicationTests {
     void contextLoads() {
     }
 
+    @Test
+    void somethingHere() {
+        //nothing to do
+    }
+
 }

@@ -1,0 +1,25 @@
+{
+	"carname": "T-Roc",
+	"carbrand": "Volkswagen",
+	"seatsdescription": [
+			"seatone": [
+			   "material": "materialtype1",
+			   "color": "colortype1" 
+			],
+			"seattwo": [
+			   "material": "materialtype2",
+			   "color": "colortype2"
+			],
+			"seatthree": [
+			   "material": "materialtype3",
+			   "color": "colortype3"
+			],
+			"seatfour": [
+			   "material": "materialtype4",
+			   "color": "colortype4"
+			]
+		],
+	"enginecapacity": 1.498
+}
+
+	

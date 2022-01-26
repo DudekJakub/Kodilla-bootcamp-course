@@ -1,5 +1,10 @@
 package com.kodilla.hibernate.manytomany;
 
+import groovy.transform.builder.Builder;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import javax.persistence.NamedQuery;
 import javax.validation.constraints.NotNull;
@@ -9,6 +14,11 @@ import java.util.List;
 @NamedQuery(
         name = "Employee.retrieveRequestedLastname",
         query = "FROM Employee WHERE lastname = :LASTNAME"
+)
+@NamedNativeQuery(
+        name = "Employee.retrieveEmployeeByPartOfLastname",
+        query = "SELECT * FROM kodilla_course.employees WHERE lastname LIKE :ARG",
+        resultClass = Employee.class
 )
 @Entity
 @Table(name = "EMPLOYEES")

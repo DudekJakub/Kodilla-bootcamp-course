@@ -1,15 +1,24 @@
 package com.kodilla.hibernate.manytomany;
 
+import groovy.transform.builder.Builder;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
-@NamedNativeQuery(
-        name = "Company.retrieveCompanyByFirstThreeLetters",
-        query = "SELECT * FROM kodilla_course.companies WHERE LEFT(COMPANY_NAME, 3) = :SHORTNAME",
-        resultClass = Company.class
-)
+@NamedNativeQueries({
+        @NamedNativeQuery(
+                name = "Company.retrieveCompanyByFirstThreeLetters",
+                query = "SELECT * FROM kodilla_course.companies WHERE LEFT(COMPANY_NAME, 3) = :SHORTNAME",
+                resultClass = Company.class
+        ),
+        @NamedNativeQuery(
+                name = "Company.retrieveCompanyByPartOfName",
+                query = "SELECT * FROM kodilla_course.companies WHERE company_name LIKE :ARG",
+                resultClass = Company.class
+        )
+})
 @Entity
 @Table(name = "COMPANIES")
 public class Company {

@@ -38,12 +38,12 @@ public final class Library extends Prototype<Library> {
     }
 
     public Library deepCopy() throws CloneNotSupportedException {
-        Library clonedBoard = super.clone();
-        clonedBoard.books = new HashSet<>();
-        for (Book bookList : books) {
-           Book clonedList = new Book(bookList.getTitle(), bookList.getAuthor(), bookList.getPublicationDate());
-           clonedBoard.getBooks().add(clonedList);
+        Library clonedLibrary = super.clone();
+        clonedLibrary.books = new HashSet<>();
+        for (Book oldBook : books) {
+            Book clonedBook = new Book(oldBook.getTitle(), oldBook.getAuthor(), oldBook.getPublicationDate());
+            clonedLibrary.getBooks().add(clonedBook);
         }
-        return clonedBoard;
+        return clonedLibrary;
     }
 }

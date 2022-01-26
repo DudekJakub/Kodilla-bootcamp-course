@@ -8,5 +8,4 @@ public class KodillaSpingWebApplication {
     public static void main(String[] args) {
         SpringApplication.run(KodillaSpingWebApplication.class, args);
     }
-
 }

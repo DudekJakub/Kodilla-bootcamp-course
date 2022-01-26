@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @SpringBootTest
 public class CompanyDaoTestSuite {
@@ -93,7 +94,8 @@ public class CompanyDaoTestSuite {
         //When
         List<Employee> requestedLastname = employeeDao.retrieveRequestedLastname("Dudek");
         List<Company> firstThreeLettersCompany = companyDao.retrieveCompanyByFirstThreeLetters("Dat");
-
+        System.out.println("----- TUTAJ -----");
+        firstThreeLettersCompany.stream().forEach(System.out::println);
         //Then
         try {
             Assertions.assertEquals(1, requestedLastname.size());

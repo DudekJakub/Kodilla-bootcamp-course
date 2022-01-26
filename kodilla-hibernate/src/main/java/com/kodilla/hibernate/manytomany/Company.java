@@ -7,7 +7,7 @@ import java.util.List;
 
 @NamedNativeQuery(
         name = "Company.retrieveCompanyByFirstThreeLetters",
-        query = "SELECT * FROM COMPANIES WHERE LEFT(COMPANY_NAME, 3) = :SHORTNAME",
+        query = "SELECT * FROM kodilla_course.companies WHERE LEFT(COMPANY_NAME, 3) = :SHORTNAME",
         resultClass = Company.class
 )
 @Entity
@@ -57,5 +57,13 @@ public class Company {
 
     public void setEmployees(List<Employee> employees) {
         this.employees = employees;
+    }
+
+    @Override
+    public String toString() {
+        return "Company{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
     }
 }

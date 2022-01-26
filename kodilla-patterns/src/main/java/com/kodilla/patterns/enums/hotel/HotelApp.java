@@ -12,5 +12,9 @@ public class HotelApp {
         System.out.println("   - low season: " + Season.LOW.getDoubleRoomPrice());
         System.out.println("   - high season: " + Season.HIGH.getDoubleRoomPrice());
         System.out.println("   - holiday season: " + Season.HOLIDAY.getDoubleRoomPrice());
+        System.out.println("3. VIP Bed rooms");
+        System.out.println("   - low season: " + Season.LOW.getVipRoomPrice());
+        System.out.println("   - high season: " + Season.HIGH.getVipRoomPrice());
+        System.out.println("   - holiday season: " + Season.HOLIDAY.getVipRoomPrice());
     }
 }

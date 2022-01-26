@@ -165,24 +165,24 @@ public class mainClass {
 
        mainClass mC = new mainClass();
 
-         mC.tylkoBezwzgledne(mC.table);
-
-         mC.mediana(mC.table1);
-
-         mC.moda(mC.table1);
-
-         mC.whilePractice();
-
+//         mC.tylkoBezwzgledne(mC.table);
+//
+//         mC.mediana(mC.table1);
+//
+//         mC.moda(mC.table1);
+//
+//         mC.whilePractice();
+//
          mC.silnia(4);
-
-         mC.palindrom("kajak");
-
-         mC.getHighestInt(20,492,102394,284740,1999992);
-
-         mC.loopInsideLoop();
-
-         mC.sumowanieCiaguLiczbTablica(1,2,3,4,5,6,7,8,9,10);
-
-         mC.sumowanieCiaguLiczbInteger(10);
+//
+//         mC.palindrom("kajak");
+//
+//         mC.getHighestInt(20,492,102394,284740,1999992);
+//
+//         mC.loopInsideLoop();
+//
+//         mC.sumowanieCiaguLiczbTablica(1,2,3,4,5,6,7,8,9,10);
+//
+//         mC.sumowanieCiaguLiczbInteger(10);
     }
 }

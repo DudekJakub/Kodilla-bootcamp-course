@@ -15,4 +15,5 @@ include 'com.kodilla-sudoku'
 include 'kodilla-sudoku'
 include 'com.kodilla.sudoku'
 include 'kodilla-hibernate'
+include 'kodilla-patterns2'
 

@@ -24,12 +24,12 @@ public class OrderFacade {
         boolean wasError = false;
         Long orderId = shopService.openOrder(userId);
         LOGGER.info("Registering new order, ID: " + orderId);
-        if (orderId < 0) {
-            LOGGER.error(OrderProcessingException.ERR_NOT_AUTHORISED);
-            wasError = true;
-            throw new OrderProcessingException(OrderProcessingException.ERR_NOT_AUTHORISED);
-        }
         try {
+            if (orderId < 0) {
+                LOGGER.error(OrderProcessingException.ERR_NOT_AUTHORISED);
+                wasError = true;
+                throw new OrderProcessingException(OrderProcessingException.ERR_NOT_AUTHORISED);
+            }
             for (ItemDto orderItem : order.getItems()) {
                 LOGGER.info("Adding item " + orderItem.getProductId() + ", " + orderItem.getQuantity() + "pcs");
                 shopService.addItem(orderId, orderItem.getProductId(), orderItem.getQuantity());

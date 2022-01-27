@@ -35,4 +35,20 @@ public class PizzaOrderTestSuite {
         assertEquals("Ingredients: ciasto grube, sos pomidorowy, cheese + extras: [HAM]", description);
     }
 
+    @Test
+    public void testAllPizzaOrderDecorators() {
+        //Given
+        PizzaOrder theOrder = new BasicPizzaOrder("thin cake", "tomato sauce");
+        theOrder = new GarlicSauceOrderDecorator(theOrder);
+        theOrder = new HamOrderDecorator(theOrder);
+        theOrder = new SalamiOrderDecorator(theOrder);
+        theOrder = new DoubleCheeseOrderDecorator(theOrder);
+        //When
+        BigDecimal calculatedPrize = theOrder.getCost();
+        String description = theOrder.getDescription();
+        //Then
+        assertEquals(new BigDecimal("41.50"), calculatedPrize);
+        assertEquals("Ingredients: thin cake, tomato sauce, cheese + extras: [GARLIC SAUCE] [HAM] [SALAMI] [DOUBLE CHEESE]", description);
+    }
+
 }

@@ -51,4 +51,18 @@ public class PizzaOrderTestSuite {
         assertEquals("Ingredients: thin cake, tomato sauce, cheese + extras: [GARLIC SAUCE] [HAM] [SALAMI] [DOUBLE CHEESE]", description);
     }
 
+    @Test
+    public void testDoubleCheeseOrderDecorator() {
+        //Given
+        PizzaOrder theOrder = new BasicPizzaOrder("Thin cake", "tomato sauce");
+        theOrder = new DoubleCheeseOrderDecorator(theOrder);
+
+        //When
+        BigDecimal prize = theOrder.getCost();
+        String description = theOrder.getDescription();
+
+        //Then
+        assertEquals(new BigDecimal("22"), prize);
+        assertEquals("Ingredients: Thin cake, tomato sauce, cheese + extras: [DOUBLE CHEESE]", description);
+    }
 }

@@ -1,13 +1,26 @@
 package com.kodilla.patterns2.observer.homework;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import org.aspectj.lang.annotation.Aspect;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
+@NoArgsConstructor
+@EnableAspectJAutoProxy
 public class KodillaCourse implements ObservableKodillaCourse {
 
-    private final String queueName;
-    private final List<Observer> observers;
-    private final List<Task> tasks;
+    private String queueName;
+    private List<Observer> observers;
+    private List<Task> tasks;
 
     protected KodillaCourse(final String queueName) {
         this.queueName = queueName;

@@ -55,13 +55,13 @@ public class CompanyDaoTestSuite {
         Assertions.assertNotEquals(0, softwareMachineId);
 
         //CleanUp
-        try{
-            companyDao.deleteById(geodrillId);
-            companyDao.deleteById(dataMaestersId);
-            companyDao.deleteById(softwareMachineId);
-        } catch (Exception e) {
-            //do nothing
-        }
+//        try{
+//            companyDao.deleteById(geodrillId);
+//            companyDao.deleteById(dataMaestersId);
+//            companyDao.deleteById(softwareMachineId);
+//        } catch (Exception e) {
+//            //do nothing
+//        }
     }
 
     @Test

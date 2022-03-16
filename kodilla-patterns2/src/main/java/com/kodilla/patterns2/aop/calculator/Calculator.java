@@ -30,7 +30,13 @@ public class Calculator {
 
     public BigDecimal factorial(BigDecimal n) {
         if(n.compareTo(BigDecimal.ONE) > 0) {
+
+
             return n.multiply(factorial(n.subtract(BigDecimal.ONE)));
+
+//            10 * (9 * (8 * (7 * (6 * (5 * (4 * (3 * (2 * (1)))))))));
+
+
         } else if (n.equals(BigDecimal.ONE) || n.equals(BigDecimal.ZERO)) {
             return BigDecimal.ONE;
         } else {

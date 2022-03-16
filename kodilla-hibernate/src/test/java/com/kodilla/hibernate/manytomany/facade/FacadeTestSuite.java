@@ -92,12 +92,48 @@ class FacadeTestSuite {
     @Test
     public void testFacade() throws FacadeException {
         //Given
+        companyDao.deleteAll();
+        employeeDao.deleteAll();
+
+        Company microsoft = new Company("Microsoft");
+        Company bethesda = new Company("Bethesda");
+        Company microgigs = new Company("Microgigs");
+
+        Employee jakubdudek = new Employee("Jakub", "Dudek");
+        Employee martynadudek = new Employee("Martyna", "Bykowska");
+        Employee bartoszsmerek = new Employee("Bartosz", "Smerek");
+
         //When
+        companyDao.save(microsoft);
+        int id1 = microsoft.getId();
+        companyDao.save(bethesda);
+        int id2 = bethesda.getId();
+        companyDao.save(microgigs);
+        int id3 = microgigs.getId();
+
+        employeeDao.save(jakubdudek);
+        int id4 = jakubdudek.getId();
+        employeeDao.save(martynadudek);
+        int id5 = martynadudek.getId();
+        employeeDao.save(bartoszsmerek);
+        int id6 = bartoszsmerek.getId();
+
         List<Company> companyListResult = facade.getCompanyByPartOfName("%Micro%");
         List<Employee> employeeListResult = facade.getEmployeeByPartOfLastname("%Byko%");
 
         //Then
-        Assertions.assertEquals(1, companyListResult.size());
+        Assertions.assertEquals(2, companyListResult.size());
         Assertions.assertEquals(1, employeeListResult.size());
+
+        try {
+            companyDao.deleteById(id1);
+            companyDao.deleteById(id2);
+            companyDao.deleteById(id3);
+            employeeDao.deleteById(id4);
+            employeeDao.deleteById(id5);
+            employeeDao.deleteById(id6);
+        } catch (Exception e) {
+            LOGGER.info("Errors with IDs occured");
+        }
     }
 }

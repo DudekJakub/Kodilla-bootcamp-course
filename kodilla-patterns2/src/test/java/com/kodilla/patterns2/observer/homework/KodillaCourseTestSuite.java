@@ -64,6 +64,7 @@ public class KodillaCourseTestSuite {
             Task task4 = jakubStudent.createTask("6.1 Task: use stream", "Learning stream");
 
             makeMultipleTasksAdded(task, task1, task2, task3, task4);
+
         } catch (Exception e) {
             System.out.print("\nError occured while creating or adding tasks: \n" + Arrays.toString(e.getStackTrace()));
         }

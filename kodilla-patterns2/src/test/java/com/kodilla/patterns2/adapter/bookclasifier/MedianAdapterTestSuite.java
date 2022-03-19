@@ -94,4 +94,53 @@ public class MedianAdapterTestSuite {
         //Then
         assertEquals(1995, medianPublicationYearResult);
     }
+
+    @Test
+    public void testMultipleModesForPublicationYear() {
+        //Given
+            //startSettings()
+            // +
+
+        Book book4 = Book.builder().publicationYear(1977).build();
+        Book book5 = Book.builder().publicationYear(1977).build();
+        Book book6 = Book.builder().publicationYear(1977).build();
+        Book book7 = Book.builder().publicationYear(1968).build();
+        Book book8 = Book.builder().publicationYear(1968).build();
+
+        bookSet.add(book4);
+        bookSet.add(book5);
+        bookSet.add(book6);
+        bookSet.add(book7);
+        bookSet.add(book8);
+
+
+        //When
+        List<Integer> multipleModesResult = medianAdapter.publicationYearModa(bookSet);
+
+        //Then
+        List<Integer> assertIntegersList = new ArrayList<>();
+        assertIntegersList.add(1968);
+        assertIntegersList.add(1977);
+
+        assertEquals(assertIntegersList, multipleModesResult);
+    }
+
+    @Test
+    public void testOneModeForPublicationYear() {
+        //Given
+            //startSettings()
+            // +
+
+        Book book4 = Book.builder().publicationYear(2022).build();
+
+        bookSet.add(book4);
+
+        //When
+        List<Integer> oneModeResult = medianAdapter.publicationYearModa(bookSet);
+
+        //Then
+        int[] array = new int[]{2022};
+
+        assertEquals(Arrays.stream(array).boxed().collect(Collectors.toList()), oneModeResult);
+    }
 }

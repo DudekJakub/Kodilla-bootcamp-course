@@ -7,6 +7,7 @@ import com.kodilla.patterns2.adapter.bookclasifier.libraryB.Statistics;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.Map;
 
 @Component
@@ -23,5 +24,10 @@ public class MedianAdaptee implements BookStatistics {
     @Override
     public double medianPublicationYear(Map<BookSignature, Book> books) throws Exception {
         return statistics.medianPublicationYear(books);
+    }
+
+    @Override
+    public List<Integer> modePublicationYear(Map<BookSignature, Book> books) {
+        return statistics.modePublicationYear(books);
     }
 }

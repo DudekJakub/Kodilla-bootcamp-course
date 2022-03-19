@@ -6,6 +6,7 @@ import com.kodilla.patterns2.adapter.bookclasifier.libraryB.BookSignature;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -19,5 +20,14 @@ public class MedianAdapter extends MedianAdaptee implements Classifier {
             bookMap.put(new BookSignature(""), new com.kodilla.patterns2.adapter.bookclasifier.libraryB.Book(book.getAuthor(), book.getTitle(), book.getPublicationYear()));
         }
         return medianPublicationYear(bookMap);
+    }
+
+    @Override
+    public List<Integer> publicationYearModa(Set<Book> bookSet) {
+        Map<BookSignature, com.kodilla.patterns2.adapter.bookclasifier.libraryB.Book> bookMap = new HashMap<>();
+        for (Book book : bookSet) {
+            bookMap.put(new BookSignature(""), new com.kodilla.patterns2.adapter.bookclasifier.libraryB.Book(book.getAuthor(), book.getTitle(), book.getPublicationYear()));
+        }
+        return modePublicationYear(bookMap);
     }
 }

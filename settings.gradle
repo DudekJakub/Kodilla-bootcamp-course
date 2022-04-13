@@ -16,4 +16,6 @@ include 'kodilla-sudoku'
 include 'com.kodilla.sudoku'
 include 'kodilla-hibernate'
 include 'kodilla-patterns2'
+include 'SOLID-practice'
+include 'kodilla-SOLID-practice'
 

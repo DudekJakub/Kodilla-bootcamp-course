@@ -1,8 +1,14 @@
 import com.kodilla.jdbc.DbManager;
 import com.kodilla.jdbc.QueryExecutorSQL;
+import com.kodilla.jdbc.practice.PostConfiguration;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -10,22 +16,30 @@ import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@SpringBootTest(classes = {PostConfiguration.class})
 public class DbManagerTestSuite {
 
+    private static DbManager dbManager;
+
+    @BeforeAll
+    static void setDbConnection() {
+        ApplicationContext applicationContext = new AnnotationConfigApplicationContext(PostConfiguration.class);
+        dbManager = applicationContext.getBean(DbManager.class);
+    }
+
     @Test
-    void testConnect() throws SQLException {
-        //Given
-        //When
-        DbManager dbManager = DbManager.getInstance();
+    void testConnect() {
+        //Given && When
+        Connection connection = dbManager.getConnection();
         //Then
-        Assertions.assertNotNull(dbManager.getConnection());
+        Assertions.assertNotNull(connection);
     }
 
     @Test
     void testSelectUser() throws SQLException {
         //Given
-        DbManager dbManager = DbManager.getInstance();
-
+        ApplicationContext applicationContext = new AnnotationConfigApplicationContext(PostConfiguration.class);
+        DbManager dbManager = applicationContext.getBean(DbManager.class);
         //When
         String sqlQuery = "SELECT * FROM USERS";
         Statement statement = dbManager.getConnection().createStatement();
@@ -40,13 +54,12 @@ public class DbManagerTestSuite {
         }
         resultSet.close();
         statement.close();
-        Assertions.assertEquals(5, counter);
+        Assertions.assertEquals(6, counter);
     }
 
     @Test
     void testSelectUsersAndPosts() throws SQLException {
         //Given
-        DbManager dbManager= DbManager.getInstance();
 
         //When
         String sqlQuery = "SELECT U.FIRSTNAME, U.LASTNAME, COUNT(*) AS POSTS_NUMBER\n" +
@@ -65,13 +78,12 @@ public class DbManagerTestSuite {
         }
         rS.close();
         statement.close();
-        Assertions.assertEquals(2, counter);
+        Assertions.assertEquals(5, counter);
     }
 
     @Test
     void testSelectUsersAndTheirPostsBody() throws SQLException {
         //Given
-        DbManager dbManager = DbManager.INSTANCE;
         List<String> usersAndTheirPosts = new ArrayList<>();
 
         //When
@@ -100,14 +112,13 @@ public class DbManagerTestSuite {
             System.out.println(post);
         }
 
-        Assertions.assertEquals(6, counter);
-        Assertions.assertEquals(6, usersAndTheirPosts.size());
+        Assertions.assertEquals(12, counter);
+        Assertions.assertEquals(12, usersAndTheirPosts.size());
     }
 
     @Test
     void testHowManyUsersHaveNoPosts() throws SQLException {
         //Given
-        DbManager dbManager = DbManager.INSTANCE;
 
         Collection<String> usersWithoutPosts = new HashSet<>();
 
@@ -129,25 +140,31 @@ public class DbManagerTestSuite {
 
         System.out.println("\nUSERS WITHOUT POSTS\n" + usersWithoutPosts + " = " + usersWithoutPosts.size() + " user(s).");
 
-        Assertions.assertEquals(3, numberOfUsersWithoutPosts);
-        Assertions.assertEquals(2, usersWithoutPosts.size());
+        Assertions.assertEquals(1, numberOfUsersWithoutPosts);
+        Assertions.assertEquals(1, usersWithoutPosts.size());
     }
 
     @Test
     void testAddColumnToEntity() throws SQLException {
         //Given
-        DbManager dbManager = DbManager.INSTANCE;
-
         String tableName = "posts";
         String columnName = "date_of_post";
         String columnParameters = "DATE NOT NULL";
 
         //When
-        QueryExecutorSQL.addNewColumnToTable(tableName, columnName, columnParameters);
+        /** I know it isn't good practice making that kind of test, but I am still just learning stuff ;) */
+        String checkIfTableAlreadyExists_query = "SHOW COLUMNS FROM kodilla_course.posts WHERE Field = 'date_of_post'";
+        Statement statement1 = dbManager.getConnection().createStatement();
+        statement1.executeQuery(checkIfTableAlreadyExists_query);
+        ResultSet checkIfColumnAlreadyExists = statement1.getResultSet();
+        if (!checkIfColumnAlreadyExists.next()) {
+            QueryExecutorSQL.addNewColumnToTable(tableName, columnName, columnParameters);
+        }
+        checkIfColumnAlreadyExists.close();
+        statement1.close();
 
         //Then
         Statement statement = dbManager.getConnection().createStatement();
-
 
         String checkSQL = "SELECT date_of_post FROM " + tableName;
 

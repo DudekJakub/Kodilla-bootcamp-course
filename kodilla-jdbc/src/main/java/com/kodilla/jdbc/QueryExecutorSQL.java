@@ -60,7 +60,7 @@ public class QueryExecutorSQL {
     public static void addNewColumnToTable(String tableName, String columnName, String columnParameters) {
 
         try {
-            connection = DbManager.INSTANCE.getConnection();
+            connection = DbManager.getInstance().getConnection();
             statement = connection.createStatement();
             String addColumn = "ALTER TABLE " + tableName + " ADD COLUMN " + columnName + " " + columnParameters;
             statement.execute(addColumn);

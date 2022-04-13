@@ -2,23 +2,35 @@ package com.kodilla.jdbc.practice;
 
 import com.kodilla.jdbc.DbManager;
 import groovy.util.MapEntry;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@SpringBootTest(classes = {PostConfiguration.class})
 class PostsEntityProcessorTest {
 
-    PostsEntityProcessor postsEntityProcessor = new PostsEntityProcessor();
+    private static PostsEntityProcessor postsEntityProcessor;
+    private static DbManager dbManager;
+
+    @BeforeAll
+    static void setBeansBeforeTest() {
+        ApplicationContext applicationContext = new AnnotationConfigApplicationContext(PostConfiguration.class);
+        postsEntityProcessor = applicationContext.getBean(PostsEntityProcessor.class);
+        dbManager = applicationContext.getBean(DbManager.class);
+    }
 
     @Test
     void measureQuantityOfPostsForUsers() throws SQLException {
@@ -33,9 +45,20 @@ class PostsEntityProcessorTest {
     }
 
     @Test
-    void getRandomDayForPost() {
+    void countNumberOfRowsInTable() throws SQLException {
         //Given
+        String tableName = "posts";
+
         //When
+        int numberOfRowsInTable_posts = postsEntityProcessor.countNumberOfRowsInTable(tableName);
+
+        //Then
+        assertEquals(12, numberOfRowsInTable_posts);
+    }
+
+    @Test
+    void getRandomDayForPost() {
+        //Given && When
         int result = postsEntityProcessor.getRandomDayForPost();
 
         //Then
@@ -48,8 +71,6 @@ class PostsEntityProcessorTest {
     @Test
     void addPostWithRandomizedDateOfPost() throws SQLException {
         //Given
-        DbManager dbManager = DbManager.getInstance();
-
         int userId = 1;
         String postBody = "'Testing addRandomizedDatesOfPosts'";
 
@@ -95,11 +116,22 @@ class PostsEntityProcessorTest {
         statement1.close();
     }
 
+    /** should return Map with <id, <userPost, userPostDate> */
+    @Test
+    void getAllUsersPostsAndDates() throws SQLException {
+        //When
+        var mapWithUsersIdAndTheirPostsWithDates = postsEntityProcessor.getAllUsersPostsAndDates();
+
+        mapWithUsersIdAndTheirPostsWithDates.entrySet().forEach(v -> System.out.println(v + "\n"));
+
+        //Then
+//        assertEquals(5, mapWithUsersIdAndTheirPostsWithDates.keySet().size());
+    }
+
+    /** should return Map with <postBody, postDate> */
     @Test
     void getAllUserPostsWithDates() throws SQLException {
         //Given
-        DbManager dbManager = DbManager.getInstance();
-
         int userId = 1;
         int resultSetNextCounter = 0;
         String sql_SELECT = "SELECT body, date_of_post FROM kodilla_course.posts WHERE user_id = 1";

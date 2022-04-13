@@ -1,17 +1,23 @@
 package com.kodilla.jdbc;
 
+import com.kodilla.jdbc.practice.PostConfiguration;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Component;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
 
-public enum DbManager {
-
-    INSTANCE;
+@Component
+public class DbManager {
 
     private final Connection conn;
 
-    DbManager() {
+    public DbManager() {
         Properties connectionProps = new Properties();
         connectionProps.put("user", "kodilla-user");
         connectionProps.put("password", "kodilla_Pass123");
@@ -27,7 +33,8 @@ public enum DbManager {
     }
 
     public static DbManager getInstance() {
-        return INSTANCE;
+        ApplicationContext applicationContext = new AnnotationConfigApplicationContext(PostConfiguration.class);
+        return applicationContext.getBean(DbManager.class);
     }
 
     public Connection getConnection() {

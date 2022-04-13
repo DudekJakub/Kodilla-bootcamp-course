@@ -1,7 +1,5 @@
 package com.kodilla.hibernate.manytomany;
 
-import groovy.transform.builder.Builder;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;

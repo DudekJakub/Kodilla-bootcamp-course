@@ -1,9 +1,5 @@
 package com.kodilla.hibernate.manytomany;
 
-import groovy.transform.builder.Builder;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.persistence.NamedQuery;

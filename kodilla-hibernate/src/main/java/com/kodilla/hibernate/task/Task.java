@@ -1,6 +1,8 @@
 package com.kodilla.hibernate.task;
 
 import com.kodilla.hibernate.tasklist.TaskList;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -27,6 +29,8 @@ import java.util.Date;
         resultClass = Task.class
 )
 @Entity
+@Builder
+@AllArgsConstructor
 @Table(name = "TASKS")
 public class Task {
 
@@ -86,7 +90,7 @@ public class Task {
         this.id = id;
     }
 
-    private void setDescription(String description) {
+    public void setDescription(String description) {
         this.description = description;
     }
 
@@ -104,5 +108,17 @@ public class Task {
 
     public void setTaskList(TaskList taskList){
         this.taskList = taskList;
+    }
+
+    @Override
+    public String toString() {
+        return "\nTask{" +
+                "\nid=" + id +
+                ",\n description='" + description + '\'' +
+                ",\n created=" + created +
+                ",\n duration=" + duration +
+                ",\n taskFinancialDetails=" + taskFinancialDetails +
+                ",\n taskList=" + taskList +
+                "}\n";
     }
 }

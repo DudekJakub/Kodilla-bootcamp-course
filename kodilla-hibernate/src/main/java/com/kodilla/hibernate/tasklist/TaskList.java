@@ -45,7 +45,7 @@ public class TaskList {
     @OneToMany(
             targetEntity = Task.class,
             mappedBy = "taskList",
-            cascade = CascadeType.ALL,
+            cascade = {CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH, CascadeType.REMOVE},
             fetch = FetchType.LAZY
     )
     public List<Task> getTasks() {

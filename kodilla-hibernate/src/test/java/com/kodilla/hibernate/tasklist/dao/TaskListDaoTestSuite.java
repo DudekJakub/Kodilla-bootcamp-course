@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.math.BigDecimal;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,7 +22,6 @@ public class TaskListDaoTestSuite {
 
     @Autowired
     private TaskDao taskDao;
-
 
     private final String DISCRIPTION = "Here is description example no.1";
     private final String LISTNAME = "ListNameTest";
@@ -69,11 +69,16 @@ public class TaskListDaoTestSuite {
         //When
         taskListDao.save(taskList);
         int id = taskList.getId();
+        taskDao.saveAll(Arrays.asList(task, task1));
+        int task_Id = taskDao.findByDuration(14).get(0).getId();
+        int task1_Id = taskDao.findByDuration(3).get(0).getId();
 
         //Then
         Assertions.assertNotEquals(0, id);
 
         //CleanUp
         taskListDao.deleteById(id);
+        taskDao.deleteById(task_Id);
+        taskDao.deleteById(task1_Id);
     }
 }

@@ -38,7 +38,7 @@ public class TaskDaoTestSuite {
         Assertions.assertTrue(readTask.isPresent());
 
         //CleanUp
-        taskDao.deleteById(id);
+//        taskDao.deleteById(id);
     }
 
     @Test

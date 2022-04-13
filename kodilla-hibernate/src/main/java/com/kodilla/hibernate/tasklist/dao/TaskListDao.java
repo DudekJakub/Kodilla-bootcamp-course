@@ -1,14 +1,21 @@
 package com.kodilla.hibernate.tasklist.dao;
 
 import com.kodilla.hibernate.tasklist.TaskList;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
-@Transactional
-public interface TaskListDao extends CrudRepository<TaskList, Integer> {
+public interface TaskListDao extends JpaRepository<TaskList, Integer> {
     List<TaskList> findByListName(String listName);
+
+    @Override
+    Optional<TaskList> findById(Integer integer);
+
+    @Override
+    default <S extends TaskList> S saveAndFlush(S entity) {
+        return null;
+    }
 }

@@ -3,8 +3,8 @@ package com.kodilla.patterns.factory.tasks;
 public final class DrivingTask implements Task {
 
     private final String taskName;
-    private String where;
-    private String using;
+    private final String where;
+    private final String using;
     private boolean isTaskDone = false;
 
     public DrivingTask(String taskName, String where, String using) {

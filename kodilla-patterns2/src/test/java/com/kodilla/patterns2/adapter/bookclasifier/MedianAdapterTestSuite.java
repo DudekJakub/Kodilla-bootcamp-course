@@ -1,6 +1,7 @@
 package com.kodilla.patterns2.adapter.bookclasifier;
 
 import com.kodilla.patterns2.adapter.bookclasifier.libraryA.Book;
+import com.kodilla.patterns2.adapter.bookclasifier.libraryB.BookSignature;
 import com.kodilla.patterns2.adapter.bookclasifier.libraryB.Statistics;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -142,5 +143,36 @@ public class MedianAdapterTestSuite {
         int[] array = new int[]{2022};
 
         assertEquals(Arrays.stream(array).boxed().collect(Collectors.toList()), oneModeResult);
+    }
+
+    @Test
+    public void testModePublicationStreamWithStream() {
+        //Given
+        Map<BookSignature, com.kodilla.patterns2.adapter.bookclasifier.libraryB.Book> books = new HashMap<>();
+        BookSignature bookSignature = new BookSignature("10201");
+        BookSignature bookSignature2 = new BookSignature("10321");
+        BookSignature bookSignature3 = new BookSignature("10322");
+        BookSignature bookSignature4 = new BookSignature("1032324");
+
+        com.kodilla.patterns2.adapter.bookclasifier.libraryB.Book book = new com.kodilla.patterns2.adapter.bookclasifier.libraryB.Book("b", "a", 2000);
+        com.kodilla.patterns2.adapter.bookclasifier.libraryB.Book book1 = new com.kodilla.patterns2.adapter.bookclasifier.libraryB.Book("b", "a", 2000);
+        com.kodilla.patterns2.adapter.bookclasifier.libraryB.Book book2 = new com.kodilla.patterns2.adapter.bookclasifier.libraryB.Book("b", "a", 2001);
+        com.kodilla.patterns2.adapter.bookclasifier.libraryB.Book book3 = new com.kodilla.patterns2.adapter.bookclasifier.libraryB.Book("b", "a", 2002);
+
+        books.put(bookSignature, book);
+        books.put(bookSignature2, book1);
+        books.put(bookSignature3, book2);
+        books.put(bookSignature4, book3);
+
+        //When
+        var result = statistics.modePublicationYearWithStream(books);
+
+        System.out.println(result);
+    }
+
+    @Test
+    public void testImmutable() {
+        //Given
+
     }
 }

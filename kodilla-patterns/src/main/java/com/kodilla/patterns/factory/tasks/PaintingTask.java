@@ -3,8 +3,8 @@ package com.kodilla.patterns.factory.tasks;
 public final class PaintingTask implements Task {
 
     private final String taskName;
-    private String color;
-    private String whatToPaint;
+    private final String color;
+    private final String whatToPaint;
     private boolean isTaskDone = false;
 
     public PaintingTask(String taskName, String color, String whatToPaint) {

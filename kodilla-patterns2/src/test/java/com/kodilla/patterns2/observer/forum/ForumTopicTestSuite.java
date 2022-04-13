@@ -3,6 +3,8 @@ package com.kodilla.patterns2.observer.forum;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.time.LocalDate;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
@@ -29,5 +31,22 @@ public class ForumTopicTestSuite {
         //Then
         assertEquals(3, jakubdudek.getUpdateCount());
         assertEquals(1, bartoszsmerek.getUpdateCount());
+    }
+
+    @Test
+    public void testForumUserAddPostToChosenTopic() {
+        //Given
+        ForumTopic javaHelpForumTopic = new JavaHelpForumTopic();
+        ForumUser jakub_dudek = new ForumUser("Jakub Dudek");
+
+        javaHelpForumTopic.addMemberToTopic(jakub_dudek);
+        jakub_dudek.addPostToTopic(javaHelpForumTopic, "Hello!");
+        javaHelpForumTopic.registerObserver(jakub_dudek);
+        javaHelpForumTopic.addPost("Hello everyone. This is new Java-Help-Forum!");
+
+
+        System.out.println("\nJavaHelpForumTopic members list: " + javaHelpForumTopic.members + "\nobservers list: " + javaHelpForumTopic.getObservers() + "\nposts list: " + javaHelpForumTopic.getMessages());
+
+        assertEquals(1, jakub_dudek.getUpdateCount());
     }
 }

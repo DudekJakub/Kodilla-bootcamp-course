@@ -97,6 +97,7 @@ public class Statistics implements BookStatistics {
         System.out.println("Initial = " + multipleModesInit);
 
         repeatListOfYears.sort(Comparator.naturalOrder());
+        System.out.println("repeatListOfYears = " + repeatListOfYears);
         var2 = repeatListOfYears.get(repeatListOfYears.size()-1);
         System.out.println("Highest number of repeats = " + var2);
 
@@ -117,5 +118,16 @@ public class Statistics implements BookStatistics {
         }
         LOGGER.info("Searching finished!");
         return new ArrayList<>(multipleModesSorted.keySet());
+    }
+
+    public Map<Integer, Long> modePublicationYearWithStream(Map<BookSignature, Book> books) {
+        var yearsGroupedByFrequency = books.entrySet().stream().collect(Collectors.groupingBy(entry -> entry.getValue().getPublicationYear(), Collectors.counting()));
+
+        var result = yearsGroupedByFrequency.entrySet().stream().reduce((entry1, entry2) -> entry1.getValue() > entry2.getValue() ? entry1 : entry2);
+
+//        System.out.println(yearsGroupedByFrequency);
+        System.out.println(result);
+
+        return yearsGroupedByFrequency;
     }
 }

@@ -1,3 +1,6 @@
+import SRP.exerciseCar.after_refactored.CarDAO;
+import SRP.exerciseCar.after_refactored.CarRater;
+import SRP.exerciseCar.after_refactored.CarsPrinter;
 import SRP.exerciseCar.before_refactored.CarManager;
 
 import java.util.Arrays;
@@ -8,6 +11,7 @@ public class Application {
     public static void main(String[] args) {
 
         CarManager carManager = new CarManager();
+        SRP.exerciseCar.after_refactored.CarManager carManager_AFTER = new SRP.exerciseCar.after_refactored.CarManager(new CarDAO(), new CarsPrinter(), new CarRater());
 //
 //        System.out.println(carManager.getCarsName());
 //
@@ -16,6 +20,10 @@ public class Application {
         carManager.compareCars(carManager.getFromDb("2"), carManager.getFromDb("1"));
 
         System.out.println(compareStrings("multipla", "gold"));
+
+        System.out.println("AFTER REFACTORING:\n'getAllCars'");
+        System.out.println(carManager_AFTER.getAllCars() + "\n\n'getBestCar'\n" + carManager_AFTER.getBestCar()
+                                + "\n\n'getCarById'\n" + carManager_AFTER.getCarById("1") + "\n\n'printAllCars'\n" + carManager_AFTER.printCars());
     }
 
     static int compareStrings(String first, String second) {

@@ -40,6 +40,17 @@ public class PostsEntityProcessor {
         return rS.getRow();
     }
 
+    public Map<Integer, Integer> countNumberOfPostsForEveryUser() throws SQLException {
+        String sql_SELECT = "SELECT USER_ID, COUNT(*) AS 'quantity' FROM kodilla_course.posts GROUP BY USER_ID";
+
+        ResultSet resultSet = dbManager.getConnection().createStatement().executeQuery(sql_SELECT);
+        Map<Integer,Integer> userWithPostQuantity = new HashMap<>();
+        while (resultSet.next()) {
+            userWithPostQuantity.put(resultSet.getInt(1), resultSet.getInt(2));
+        }
+        return userWithPostQuantity;
+    }
+
     public Map<Integer, Map<String,LocalDate>> getAllUsersPostsAndDates() throws SQLException {
         String sql_SELECT_userIds = "SELECT p.user_id FROM kodilla_course.posts p ORDER BY p.USER_ID";
         String sql_SELECT_userPostsAndDates = "SELECT p.body, p.date_of_post FROM kodilla_course.posts p WHERE user_id = ";
@@ -60,14 +71,19 @@ public class PostsEntityProcessor {
 
         Statement statement1 = dbManager.getConnection().createStatement();
 
+        /** Pierwsza pętla wykonuje się tak długo, aż nie zostaną wykonane akcje dla wszystkich USERów
+         *  Druga pętla wykonuje się tak długo, aż nie zostaną przeiterowane wszystkie wiersze z postami dla danego USERa
+         *  Trzecia pętlka wykonuje się do momentu, aż kursor resultSeta będzie miał przed sobą kolejny wiersz
+         */
+
         while (counter_UsersWithPostsSize <= mapWithUsersIds_and_assignedPostsWithDates.keySet().size()) {
+
             while (counter_UserPostsQuantity <= getAllUserPostsWithDates(counter_UsersWithPostsSize).values().size()) {
                 ResultSet userPostsWithDates = statement1.executeQuery(sql_SELECT_userPostsAndDates + counter_UsersWithPostsSize);
 
                 while (userPostsWithDates.next()) {
                         mapWithUsersIds_and_assignedPostsWithDates.get(counter_UsersWithPostsSize)
                                 .put(userPostsWithDates.getString("body"), userPostsWithDates.getDate("date_of_post").toLocalDate());
-
                 }
                 counter_UserPostsQuantity++;
             }

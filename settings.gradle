@@ -18,4 +18,5 @@ include 'kodilla-hibernate'
 include 'kodilla-patterns2'
 include 'SOLID-practice'
 include 'kodilla-SOLID-practice'
+include 'kodilla-testing2'
 

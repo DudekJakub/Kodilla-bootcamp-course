@@ -187,4 +187,10 @@ class PostsEntityProcessorTest {
         //Then
         assertEquals(12, rowsAffectedQuantity);
     }
+
+    @Test
+    void testCountNumberOfPostsForEveryUser() throws SQLException {
+        var result = postsEntityProcessor.countNumberOfPostsForEveryUser();
+        System.out.println(result);
+    }
 }
